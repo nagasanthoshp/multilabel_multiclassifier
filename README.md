@@ -2,7 +2,7 @@
 Run inference `python inference.py -i test.jpg -c checkpoints_20-06/classification_epoch_18_valloss_3.06.h5`
 tf version: 2.3.0
 
-# Training
+## Training
 1. Data augumentation performed
 
 ## Model architecture
