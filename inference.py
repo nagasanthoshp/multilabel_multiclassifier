@@ -1,12 +1,18 @@
 import cv2
 import numpy as  np
 import sys
+import os
 from tensorflow.keras.optimizers import Adam
+import argparse
+
 from multilabel_multiclass_classifier_net import MultiLabelMutliClassifierNet
 
-def main():
-    image_path = sys.argv[1]
-    checkpoint_path = sys.argv[2]
+def main(args):
+    image_path = args.test_image_path
+    checkpoint_path = args.model_checkpoint
+
+    assert os.path.exists(image_path)
+    assert os.path.exists(checkpoint_path)
 
     input_shape = (300, 225, 3)
     neck_classes = 8
@@ -42,4 +48,8 @@ def main():
 
 
 if __name__=="__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--test_image_path", required=True, help="path to test image", type=str)
+    parser.add_argument("-c", "--model_checkpoint", required=True, help="path to checkpoint", type=str)
+    args = parser.parse_args()
+    main(args)
